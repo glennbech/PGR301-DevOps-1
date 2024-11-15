@@ -29,8 +29,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # AWS secret key from GitHub secrets
           aws-region: eu-west-1  
 
+      # Gå til mappen der template.yaml ligger
+      - name: Change Directory to SAM App
+        run: cd sam_lambda/had-imgGenerator
+
       - name: Build SAM application
-        run: sam build  # Build the SAM application using the SAM CLI
+        run: |
+          cd sam_lambda/had-imgGenerator
+          sam build --template template.yaml  # Bruk riktig sti for å bygge SAM-applikasjonen
 
       - name: Deploy SAM application
-        run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name had-imgGenerator --capabilities CAPABILITY_IAM
+        run: |
+          cd sam_lambda/had-imgGenerator
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name had-imgGenerator --capabilities CAPABILITY_IAM
