@@ -29,6 +29,5 @@ EKS for POST-request med JSON-body for å generere et bilde:
 GitHub Actions Workflow:
 
 Lenke til vellykket kjøring av GitHub Actions workflow som deployer SAM-applikasjonen
-```
-https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668 
-```
+
+[https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668](https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668 )
