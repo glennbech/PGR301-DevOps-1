@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'had-imgGenerator
+
+  SAM Template for generating images using AWS Bedrock.
+
+  '
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket to store generated images
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+Resources:
+  GenerateImageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: GenerateImageFunction
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          BUCKET_NAME:
+            Ref: BucketName
+          CANDIDATE_NR: '104'
+      Architectures:
+      - x86_64
+      Policies:
+      - S3WritePolicy:
+          BucketName:
+            Ref: BucketName
+      - AWSLambdaBasicExecutionRole
+      Events:
+        GenerateImageAPI:
+          Type: Api
+          Properties:
+            Path: /generate
+            Method: post
+    Metadata:
+      SamResourceId: GenerateImageFunction
+Outputs:
+  GenerateImageApi:
+    Description: API Gateway endpoint URL for Generate Image function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generate
+  GenerateImageFunctionArn:
+    Description: Generate Image Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - GenerateImageFunction
+      - Arn
+  GenerateImageFunctionIamRole:
+    Description: IAM Role ARN for Generate Image function
+    Value:
+      Fn::GetAtt:
+      - GenerateImageFunctionRole
+      - Arn
