@@ -18,7 +18,6 @@ Pipfile.lock
 
 # SAM & Lambda
 .aws-sam/
-lambda_sqs.zip
 
 # Editor Config
 .idea/
