@@ -7,7 +7,7 @@ variable "bucket_name" {
 variable "lambda_role_name" {
   description = "IAM Role for Lambda function"
   type        = string
-  default     = "ha_lambda_execution_role"
+  default     = "ha_lambda_execution_role1"
 }
 
 variable "sqs_queue_name" {
