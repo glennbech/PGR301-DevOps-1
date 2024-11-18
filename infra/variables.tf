@@ -7,13 +7,13 @@ variable "bucket_name" {
 variable "lambda_role_name" {
   description = "IAM Role for Lambda function"
   type        = string
-  default     = "ha_role_lambda"
+  default     = "ha_lambda_role_"
 }
 
 variable "lambda_policy_name" {
   description = "IAM Policy name for Lambda function"
   type        = string
-  default     = "lambda_policy_v2" 
+  default     = "lambda_policy_" 
 }
 
 variable "lambda_function_name" {
