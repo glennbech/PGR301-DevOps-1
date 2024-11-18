@@ -8,33 +8,33 @@ on:
 
 jobs:
   terraform:
-    name: Terraform
     runs-on: ubuntu-latest
-
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: eu-west-1
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # checkout the repository
+      - uses: actions/checkout@v3
 
+      # set up terraform environment
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_wrapper: false
 
-      # Terraform init
+      # initialize terraform
       - name: Terraform Init
+        working-directory: infra
         run: terraform init
 
-      # Terraform plan for all other branches than main
+      # run terraform plan for non-main branches
       - name: Terraform Plan
+        working-directory: infra
         if: github.ref != 'refs/heads/main'
         run: terraform plan
 
-      # Terraform apply for main branch
+      # run terraform apply for main branch
       - name: Terraform Apply
+        working-directory: infra
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
