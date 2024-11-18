@@ -17,20 +17,20 @@ resource "aws_iam_role" "lambda_role" {
 resource "aws_iam_policy" "lambda_policy" {
   name = "lambda_policy_104"
   policy = jsonencode({
-    Version = "2012-10-17"
+    Version = "2012-10-17",
     Statement = [
       {
-        Effect = "Allow"
-        Action = [
-          "sqs:SendMessage",
-          "sqs:ReceiveMessage",
-          "sqs:DeleteMessage", 
-          "sqs:GetQueueAttributes"
-        ]
+        Effect = "Allow",
+        Action = ["sqs:SendMessage", "sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes"],
         Resource = aws_sqs_queue.image_queue.arn
       }
     ]
   })
+
+  lifecycle {
+    prevent_destroy = true  
+    ignore_changes = all    
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {

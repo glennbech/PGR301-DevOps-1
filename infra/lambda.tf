@@ -10,6 +10,11 @@ resource "aws_lambda_function" "image_lambda" {
       SQS_QUEUE_URL = aws_sqs_queue.image_queue.id
     }
   }
+
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = all    
+  }
 }
 
 resource "aws_lambda_event_source_mapping" "sqs_trigger" {
