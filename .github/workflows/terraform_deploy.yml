@@ -1,46 +1,46 @@
-name: "Terraform Deploy"
+name: "terraform deploy"
 
 on:
   push:
     branches:
-      - main       # Trigger workflow on push to main branch
-      - '**'       # Trigger workflow on push to any branch
-  pull_request:    # Trigger workflow on pull requests
+      - main       # trigger workflow on push to main branch
+      - '**'       # trigger workflow on push to any other branch
+  pull_request:    # trigger workflow on pull requests
 
 jobs:
   terraform:
-    name: "Terraform Infrastructure Deploy"
+    name: "terraform infrastructure deploy"
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: eu-west-1
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+      AWS_REGION: eu-west-1  
 
     steps:
-      - name: Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: Change to infra directory
+      - name: change to infra directory
         working-directory: ./infra
-        run: pwd  # Verify that we are in the correct folder
+        run: pwd  # verify we are in the correct folder
 
-      - name: Set up Terraform
+      - name: set up terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false  
 
-      - name: Terraform Init
+      - name: terraform init
         id: init
         working-directory: ./infra
-        run: terraform init  # Initialize Terraform
+        run: terraform init  # initialize terraform
 
-      - name: Terraform Plan
+      - name: terraform plan
         id: plan
-        if: github.ref != 'refs/heads/main'  # Only run Terraform plan if not on main branch
+        if: github.ref != 'refs/heads/main'  # only run terraform plan if not on main branch
         working-directory: ./infra
         run: terraform plan -no-color 
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'  # Only apply if on main branch
+      - name: terraform apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'  # only apply if on main branch
         working-directory: ./infra
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve  
