@@ -19,7 +19,11 @@ variable "lambda_policy_name" {
 variable "lambda_function_name" {
   description = "Lambda function name"
   type        = string
+<<<<<<< HEAD
   default     = "image_generation_lambda"  
+=======
+  default     = "image_generation_lambda_"  
+>>>>>>> a7bfb8257b7495de0eeaad26832ae880a622a87a
 }
 
 variable "sqs_queue_name" {
