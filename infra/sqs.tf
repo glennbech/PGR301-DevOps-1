@@ -1,4 +1,3 @@
-resource "aws_sqs_queue" "image_generation_queue" {
-  name = var.sqs_queue_name
+resource "aws_sqs_queue" "image_queue" {
+  name = "image_generation_queue_104"
 }
-
