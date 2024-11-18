@@ -15,7 +15,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_lambda_function" "image_lambda" {
-  function_name = "image_generation_lambda"
+  function_name = var.lambda_function_name 
   role          = aws_iam_role.lambda_role.arn
   handler       = "lambda_sqs.lambda_handler"  # updated handler to matcg lamda_sqs.py
   runtime       = "python3.9"

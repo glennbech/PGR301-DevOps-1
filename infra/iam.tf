@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "lambda_policy" {
-  name        = "lambda_policy"
+  name        = var.lambda_policy_name
   description = "IAM policy for Lambda function to access SQS and S3"
   policy = jsonencode({
     Version = "2012-10-17"
