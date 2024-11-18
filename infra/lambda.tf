@@ -12,36 +12,39 @@ resource "aws_iam_role" "lambda_role" {
       }
     ]
   })
-}
-
-resource "aws_lambda_function" "image_lambda" {
-  function_name = var.lambda_function_name 
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "lambda_sqs.lambda_handler"  # updated handler to matcg lamda_sqs.py
-  runtime       = "python3.9"
-  filename      = "${path.module}/lambda_sqs.zip"  # using zip-file
-
-  environment {
-    variables = {
-      BUCKET_NAME = var.bucket_name
-      CANDIDATE_NR = var.candidate_number
-    }
-  }
-  
-  timeout = 20
-
-  source_code_hash = filebase64sha256("${path.module}/lambda_sqs.zip")  # using zip-file for hash
-}
-
-resource "aws_lambda_event_source_mapping" "sqs_trigger" {
-  event_source_arn = aws_sqs_queue.image_generation_queue.arn
-  function_name    = aws_lambda_function.image_lambda.arn
-
-  batch_size = 10
-  enabled    = true
 
   lifecycle {
     prevent_destroy = true
   }
 }
 
+resource "aws_iam_policy" "lambda_policy" {
+  name        = var.lambda_policy_name
+  description = "IAM policy for Lambda function to access SQS and S3"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject"
+        ]
+        Resource = "arn:aws:s3:::${var.bucket_name}/${var.candidate_number}/*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage",
+          "sqs:GetQueueAttributes"
+        ]
+        Resource = aws_sqs_queue.image_generation_queue.arn
+      }
+    ]
+  })
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
