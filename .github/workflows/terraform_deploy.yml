@@ -1,46 +1,40 @@
-name: "terraform deploy"
+name: Terraform Deploy
 
 on:
   push:
     branches:
-      - main       # trigger workflow on push to main branch
-      - '**'       # trigger workflow on push to any other branch
-  pull_request:    # trigger workflow on pull requests
+      - main
+      - '**'
 
 jobs:
   terraform:
-    name: "terraform infrastructure deploy"
+    name: Terraform
     runs-on: ubuntu-latest
+
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
-      AWS_REGION: eu-west-1  
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: eu-west-1
 
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: change to infra directory
-        working-directory: ./infra
-        run: pwd  # verify we are in the correct folder
-
-      - name: set up terraform
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_wrapper: false  
+          terraform_wrapper: false
 
-      - name: terraform init
-        id: init
-        working-directory: ./infra
-        run: terraform init  # initialize terraform
+      # Terraform init
+      - name: Terraform Init
+        run: terraform init
 
-      - name: terraform plan
-        id: plan
-        if: github.ref != 'refs/heads/main'  # only run terraform plan if not on main branch
-        working-directory: ./infra
-        run: terraform plan -no-color 
+      # Terraform plan for all other branches than main
+      - name: Terraform Plan
+        if: github.ref != 'refs/heads/main'
+        run: terraform plan
 
-      - name: terraform apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'  # only apply if on main branch
-        working-directory: ./infra
-        run: terraform apply -auto-approve  
+      # Terraform apply for main branch
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve

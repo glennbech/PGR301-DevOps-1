@@ -7,19 +7,19 @@ variable "bucket_name" {
 variable "lambda_role_name" {
   description = "IAM Role for Lambda function"
   type        = string
-  default     = "ha_lambda_role_"
+  default     = "ha_lambda_role"
 }
 
 variable "lambda_policy_name" {
   description = "IAM Policy name for Lambda function"
   type        = string
-  default     = "lambda_policy_" 
+  default     = "lambda_policy" 
 }
 
 variable "lambda_function_name" {
   description = "Lambda function name"
   type        = string
-  default     = "image_generation_lambda_v2"  # Endret for å unngå konflikt
+  default     = "image_generation_lambda"  
 }
 
 variable "sqs_queue_name" {
