@@ -46,4 +46,7 @@ Lenke til vellykket kjøring av GitHub Actions workflow, `terraform plan` (ikke 
 
 **SQS-Kø URL:**
 
-- Http URL for SQS køen: `https://sqs.eu-west-1.amazonaws.com/244530008913/104-image-queue`
+- Http URL for SQS køen:
+  ```
+  https://sqs.eu-west-1.amazonaws.com/244530008913/104-image-queue
+  ```
