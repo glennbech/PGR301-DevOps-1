@@ -9,4 +9,3 @@ variable "prefix" {
   type        = string
   default     = "104"
 }
-#testin terraform workflow
