@@ -1,17 +1,11 @@
+variable "aws_region" {
+  description = "The AWS region where resources will be created."
+  type        = string
+  default     = "eu-west-1"
+}
+
 variable "prefix" {
-  description = "Unique prefix for all resource names"
+  description = "Prefix for naming AWS resources"
   type        = string
   default     = "104"
-}
-
-variable "bucket_name" {
-  description = "S3 bucket name for storing data"
-  type        = string
-  default     = "pgr301-couch-explorers"
-}
-
-variable "sqs_queue_name" {
-  description = "Name of the SQS queue"
-  type        = string
-  default     = "image_generation_queue"
 }
