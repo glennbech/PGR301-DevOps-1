@@ -30,7 +30,7 @@ GitHub Actions Workflow:
 
 Lenke til vellykket kjøring av GitHub Actions workflow som deployer SAM-applikasjonen
 
-[https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668](https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668)
+[https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668/job/33056242572](https://github.com/danaithb/PGR301-DevOps/actions/runs/11860614668/job/33056242572)
 
 ### Oppgave 2: Infrastruktur med Terraform og SQS
 
@@ -62,6 +62,7 @@ Dockerfilen som brukes til å bygge og kjøre Java-koden finnes her: [Dockerfile
 #### ❣️ 3b
 
 **Begrunnelse for taggestrategi**
+
 Jeg valgte å bruke både `latest` og commit hash (`sha`) for tagging av Docker images. Denne strategien er inspirert av oppgavene fra følgende GitHub-repositorier: 
 [https://github.com/glennbechdevops/terraform-app-runner](https://github.com/glennbechdevops/terraform-app-runner) og [https://github.com/glennbechdevops/spring-docker-dockerhub](https://github.com/glennbechdevops/spring-docker-dockerhub), 
 som begge benytter en lignende tilnærming.
