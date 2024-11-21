@@ -9,3 +9,9 @@ variable "prefix" {
   type        = string
   default     = "104"
 }
+
+variable "alarm_email" {
+  description = "Email address for CloudWatch alarm notifications."
+  type        = string
+}
+
