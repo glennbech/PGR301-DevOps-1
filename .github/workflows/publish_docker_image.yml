@@ -35,7 +35,7 @@ jobs:
         file: ./java_sqs_client/Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest
+          ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:latest 
           ${{ secrets.DOCKER_USERNAME }}/java-sqs-client:${{ github.sha }}
 
     - name: Run Docker Container for Test
