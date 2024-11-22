@@ -13,6 +13,7 @@ variable "prefix" {
 variable "alarm_email" {
   description = "Email address for CloudWatch alarm notifications."
   type        = string
+ default     = "din_epost@domain.com"
 }
 
 variable "threshold" {
