@@ -17,7 +17,7 @@ variable "alarm_email" {
 
 variable "threshold" {
   description = "Threshold value for triggering CloudWatch alarm on SQS queue age."
-  default     = "50"  
+  default     = "100"  
   type        = string
 }
 
