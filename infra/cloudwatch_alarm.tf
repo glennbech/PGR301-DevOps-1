@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_age_alarm" {
   alarm_actions = [aws_sns_topic.sqs_notification.arn]
 }
 
-# SNS Topic for CloudWatch Alarm notifications
+# SNS ttopic for CloudWatch alarm notifications
 resource "aws_sns_topic" "sqs_notification" {
   name = "${var.prefix}_sqs_alarm_topic"
 }
