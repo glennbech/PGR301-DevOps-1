@@ -7,7 +7,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_age_alarm" {
   namespace           = "AWS/SQS"
   period              = "60"  # check every 60 seconds
   statistic           = "Maximum"
-  threshold           = 60  # alarm when message age exceeds 60 seconds
+  threshold           = var.threshold   
   alarm_description   = "Alarm if messages in SQS queue are delayed over threshold."
   actions_enabled     = true
 
