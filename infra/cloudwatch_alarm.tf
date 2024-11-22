@@ -27,5 +27,6 @@ resource "aws_sns_topic" "sqs_notification" {
 resource "aws_sns_topic_subscription" "sqs_email_subscription" {
   topic_arn = aws_sns_topic.sqs_notification.arn
   protocol  = "email"
-  endpoint  = var.alarm_email  #  email address provided at runtime
+  endpoint  = var.alarm_email
 }
+
