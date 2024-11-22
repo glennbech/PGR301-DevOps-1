@@ -28,5 +28,9 @@ resource "aws_sns_topic_subscription" "sqs_email_subscription" {
   topic_arn = aws_sns_topic.sqs_notification.arn
   protocol  = "email"
   endpoint  = var.alarm_email
+  
+  lifecycle {
+    ignore_changes = [endpoint]
+  }
 }
 
