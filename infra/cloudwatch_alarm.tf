@@ -8,7 +8,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_age_alarm" {
   period              = "60"  
   statistic           = "Maximum"
   threshold           = var.threshold   
-  alarm_description   = "Alarm if messages in SQS queue are delayed over threshold."
+  alarm_description   = "Alarm if messages in SQS queue are delayed over threshold"
   actions_enabled     = true
 
   dimensions = {
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_age_alarm" {
   alarm_actions = [aws_sns_topic.sqs_notification.arn]
 }
 
-# SNS ttopic for CloudWatch alarm notifications
+# SNS topic for CloudWatch alarm notifications
 resource "aws_sns_topic" "sqs_notification" {
   name = "${var.prefix}_sqs_alarm_topic"
 }
