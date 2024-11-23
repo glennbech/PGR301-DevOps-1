@@ -114,7 +114,7 @@ Serverless-arkitektur, derimot, tilbyr fordeler som enkel skalerbarhet og reduse
 
 I serverless-tilnærmingen reduseres kompleksiteten knyttet til infrastruktur og ressursstyring, men det krever samtidig en annen type tilpasning av utviklings- og testprosesser enn mikrotjenester. Mikrotjenester tilbyr bedre kontroll og bruker etablerte metoder for automatisering og utrulling, mens serverless gir enkelhet og skalerbarhet, men kan kreve mer tilpasning i CI/CD og overvåkning for å håndtere flere små, selvstendige komponenter.
 
-#### ❣️ 5.
+#### ❣️ 5.2
 
 Når vi vurderer overvåkning og logging i en serverless arkitektur kontra en mikrotjenestearkitektur, blir det klart at hver tilnærming har unike implikasjoner på observability. I mikrotjenestearkitekturen har vi typisk flere containere, som hver representerer en uavhengig tjeneste. Dette gjør at logging og overvåkning er ganske standardisert, og verktøy som Prometheus og Grafana brukes ofte for å få innsikt i applikasjonens tilstand. Loggingen kan enkelt konfigureres via containere, og dataene kan aggregeres på tvers av tjenester, noe som gjør det enklere å feilsøke problemer som oppstår i komplekse sammenhenger. Mikrotjenester lar oss bruke tradisjonelle metoder som aggregerte logger og overvåkningsdashboards for å få en helhetlig oversikt over hele systemet.
 
