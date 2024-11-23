@@ -82,3 +82,24 @@ GitHub Actions workflow som bygger og publiserer Docker-imaget til Docker Hub hv
     ```
     https://sqs.eu-west-1.amazonaws.com/244530008913/104-image-queue
     ```
+
+### Oppgave 4: Metrics og overvåkning
+
+#### ❣️ 4a
+
+**CloudWatch Alarm:**
+
+CloudWatch-alarm `104_sqs_age_alarm` ble satt opp for å overvåke `ApproximateAgeOfOldestMessage` for SQS-køen. 
+
+**Skript for å trigge alarm:**
+
+For å simulere belastning og trigge alarmen, kan følgende skript brukt for å sende flere meldinger til køen:
+
+```
+for i in {1..40}; do  
+  aws sqs send-message --queue-url https://sqs.eu-west-1.amazonaws.com/244530008913/104-image-queue \
+  --message-body "Christmas in New York, version $i" \
+  --region eu-west-1; 
+  sleep 0.1;  
+done
+```
