@@ -19,6 +19,8 @@ EKS for POST-request med JSON-body for å generere et bilde:
 }
 ```
 
+![Postman eks](/oppg1a.png)
+
 **S3 Bucket:**
 
 - Genererte bilder blir lagret i S3-bucketen `pgr301-couch-explorers` med kandidatnummer 104 som prefix.
