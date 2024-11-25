@@ -102,7 +102,7 @@ CloudWatch-alarm `104_sqs_age_alarm` ble satt opp for å overvåke `ApproximateA
 For å simulere belastning og trigge alarmen, kan følgende skript brukt for å sende flere meldinger til køen:
 
 ```
-for i in {1..40}; do  
+for i in {1..110}; do  
   aws sqs send-message --queue-url https://sqs.eu-west-1.amazonaws.com/244530008913/104-image-queue \
   --message-body "Christmas in New York, version $i" \
   --region eu-west-1; 
