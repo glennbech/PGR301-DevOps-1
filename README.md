@@ -38,13 +38,17 @@ Lenke til vellykket kjøring av GitHub Actions workflow som deployer SAM-applika
 
 #### ❣️ 2b
 
-Lenke til vellykket kjøring av GitHub Actions workflow, `terraform apply` på en push til `main`:
+Lenke til vellykket kjøring av GitHub Actions workflow, `terraform apply` på en push til `main`. Denne workflow linken er fra en merge da jeg tenkte dette matcher et real scenario:
 
 [https://github.com/danaithb/PGR301-DevOps/actions/runs/11921001381/job/33224195509](https://github.com/danaithb/PGR301-DevOps/actions/runs/11921001381/job/33224195509)
 
+Her er link til workflow der det har blitt pushet direkte til main:
+
+[https://github.com/danaithb/PGR301-DevOps/actions/runs/11921235397](https://github.com/danaithb/PGR301-DevOps/actions/runs/11921235397)
+
 Lenke til vellykket kjøring av GitHub Actions workflow, `terraform plan` (ikke `main`):
 
-[https://github.com/danaithb/PGR301-DevOps/actions/runs/11920971971/job/33224104563](https://github.com/danaithb/PGR301-DevOps/actions/runs/11920971971/job/33224104563)
+[https://github.com/danaithb/PGR301-DevOps/actions/runs/11901136522](https://github.com/danaithb/PGR301-DevOps/actions/runs/11901136522)
 
 **SQS-Kø URL:**
 
